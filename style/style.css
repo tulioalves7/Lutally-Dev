@@ -25,7 +25,7 @@ body {
     min-height: 100vh;
     margin: 0;
     overflow: hidden;
-    background: url(../imgs/backgrounddd.jpg) no-repeat;
+    background: url(../imgs/image-3.png) no-repeat;
     background-size: cover;
     background-position: center;
     animation: moveBackground 45s ease forwards;
