@@ -1,19 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
+:root {
+    --fonte-padrao: 'Sora', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    font-family: var(--fonte-padrao), sans-serif;
+    background: url('../background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
     display: flex;
+    transition: background-position 0.1s ease; 
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
 
+
 .login-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    height: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login-container h2 {
@@ -25,6 +48,8 @@ body {
     display: block;
     margin-bottom: 5px;
     color: #333;
+    width: 100%;
+    text-align: left;
 }
 
 .login-container input[type="text"],
@@ -33,19 +58,19 @@ body {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 16px;
+    box-sizing: border-box;
 }
 
 .password-container {
+    width: 100%;
     display: flex;
     align-items: center;
-}
-
-.password-container input[type="checkbox"] {
-    margin-left: 10px;
+    justify-content: space-between;
 }
 
 .remember-container {
+    width: 100%;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
@@ -57,14 +82,16 @@ body {
 
 .login-container button {
     width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
+    padding: 20px;
+    margin-top: 120px;
+    background-color: #700045;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 24px;
     cursor: pointer;
+    text-align: center;
 }
 
 .login-container button:hover {
-    background-color: #45a049;
+    background-color: #47001e;
 }
