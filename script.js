@@ -7,14 +7,11 @@ function visibilidadeSenha() {
     }
 }
 
-document.addEventListener('mousemove', function(e) {
-    let body = document.querySelector('body');
-    let xPos = e.clientX / window.innerWidth;
-    let yPos = e.clientY / window.innerHeight;
+// document.addEventListener('mousemove', function(e) {
+//     let body = document.querySelector('body');
+//     let xPos = e.clientX / window.innerWidth;
+//     let yPos = e.clientY / window.innerHeight;
 
-    //  fodase
-    body.style.backgroundPosition = `${xPos * 50}% ${yPos * 50}%`;
-});
-
-
-
+//     //  fodase
+//     body.style.backgroundPosition = `${xPos * 50}% ${yPos * 50}%`;
+// });
