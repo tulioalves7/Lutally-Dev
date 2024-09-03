@@ -3,49 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle de Estoque</title>
+    <title>Cadastro de Produto</title>
     <link rel="stylesheet" href="./style/crude.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Controle de Estoque</h1>
+        <h1>Cadastro de Produto</h1>
+        <button class="btn-add" onclick="openAddProductForm()">ADICIONAR</button>
 
-        <!-- Formulário para adicionar ou atualizar produtos -->
-        <div class="form-section">
-            <h2>Adicionar/Atualizar Produto</h2>
-            <label for="nome">Nome do Produto:</label>
-            <input type="text" id="nome"><br><br>
-
-            <label for="valor">Valor:</label>
-            <input type="number" id="valor"><br><br>
-
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade"><br><br>
-
-            <button class="btn" onclick="addProduct()">Adicionar Produto</button>
-            <button class="btn" onclick="updateProduct()">Atualizar Produto</button>
+        <!-- Campo de pesquisa -->
+        <div class="search-container">
+            <label for="search">Pesquisar:</label>
+            <input type="text" id="search" placeholder="Buscar produto..." onkeyup="searchProduct()">
         </div>
 
-        <hr>
+        <!-- Tabela de produtos -->
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th>Código de Barras</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="productList">
+                <!-- Produtos serão inseridos aqui dinamicamente pelo JavaScript -->
+            </tbody>
+        </table>
+    </div>
 
-        <!-- Botão para visualizar produtos -->
-        <h2>Ver Produtos</h2>
-        <button class="btn" onclick="seeProducts()">Ver Produtos</button>
+    <!-- Formulário para adicionar/atualizar produtos -->
+    <div id="productForm" style="display:none;">
+        <h2>Adicionar/Atualizar Produto</h2>
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" id="nome"><br><br>
 
-        <!-- Área onde os produtos serão exibidos -->
-        <div id="productList" class="product-list"></div>
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor"><br><br>
 
-        <hr>
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade"><br><br>
 
-        <!-- Formulário para deletar produto -->
-        <div class="form-section">
-            <h2>Deletar Produto</h2>
-            <label for="deleteNome">Nome do Produto:</label>
-            <input type="text" id="deleteNome"><br><br>
-            <button class="btn btn-delete" onclick="deleteProduct()">Deletar Produto</button>
-        </div>
-
-        <a href="index.html" class="back-link">Voltar para a tela de login</a>
+        <button onclick="addProduct()">Salvar</button>
+        <button onclick="closeForm()">Cancelar</button>
     </div>
 
     <!-- Conectando o JavaScript -->

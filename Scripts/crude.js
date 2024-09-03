@@ -4,11 +4,13 @@ const Product = [
         nome: 'palmilha',
         valor: 40,
         quantidade: 300,
+        codigoBarras: '7896843200157',
     },
     {
         nome: 'cabedal',
         valor: 400,
         quantidade: 170,
+        codigoBarras: '7894554522222',
     }    
 ];
 
@@ -32,7 +34,8 @@ function addProduct() {
     const value = {
         nome: nome,
         valor: valor, 
-        quantidade: quantidade
+        quantidade: quantidade,
+        codigoBarras: generateBarcode()
     }; 
     Product.push(value);  
     alert(`Produto ${nome} adicionado com sucesso.`);
@@ -40,87 +43,50 @@ function addProduct() {
     seeProducts(); // Atualiza a lista de produtos após adicionar
 }
 
+// Função para gerar código de barras
+function generateBarcode() {
+    return Math.floor(1000000000000 + Math.random() * 9000000000000).toString(); // Gera um código de barras de 13 dígitos
+}
+
 // Função para ver produtos
 function seeProducts() {
     const productListDiv = document.getElementById('productList');
     productListDiv.innerHTML = ''; // Limpa a lista anterior
 
-    Product.forEach(produto => {
-        const productElement = document.createElement('p');
-        productElement.textContent = `Nome: ${produto.nome}, Valor: ${produto.valor}, Quantidade: ${produto.quantidade}`;
-        productListDiv.appendChild(productElement);
+    Product.forEach((produto, index) => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${produto.nome}</td>
+            <td>R$ ${produto.valor.toFixed(2)}</td>
+            <td>${produto.quantidade}</td>
+            <td>${produto.codigoBarras}</td>
+            <td>
+                <button class="btn-action edit" onclick="editProduct(${index})"><i class="fas fa-edit"></i></button>
+                <button class="btn-action delete" onclick="deleteProduct(${index})"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        `;
+
+        productListDiv.appendChild(row);
     });
 }
 
-// Função para atualizar produto
-function updateProduct() {
-    const nome = document.getElementById('nome').value.trim();
-    const novoValor = Number(document.getElementById('valor').value);
-    const novaQuantidade = Number(document.getElementById('quantidade').value);
+// Função para editar produto (abrir no formulário para edição)
+function editProduct(index) {
+    const produto = Product[index];
+    document.getElementById('nome').value = produto.nome;
+    document.getElementById('valor').value = produto.valor;
+    document.getElementById('quantidade').value = produto.quantidade;
 
-    const index = Product.findIndex(item => item.nome.toLowerCase() === nome.toLowerCase());
-
-    if (index === -1) {
-        alert(`O produto ${nome} não foi encontrado.`);
-        return;
-    }
-
-    if (novoValor && novoValor > 0) {
-        Product[index].valor = novoValor;
-    }
-    if (!isNaN(novaQuantidade) && novaQuantidade >= 0) {
-        Product[index].quantidade = novaQuantidade;
-    } else {
-        alert('Por favor, insira uma quantidade válida.');
-        return;
-    }
-    
-    alert(`Produto ${nome} atualizado com sucesso.`);
-    clearForm();
-    seeProducts(); // Atualiza a lista de produtos automaticamente após atualizar
+    openAddProductForm(); // Abre o formulário para edição
 }
 
-// Função para deletar produto
-function deleteProduct() {
-    const nome = document.getElementById('deleteNome').value.trim();
-
-    const index = Product.findIndex(item => item.nome.toLowerCase() === nome.toLowerCase());
-
-    if (index === -1) {
-        alert(`O produto ${nome} não foi encontrado.`);
-        return;
-    }
-
+// Função para deletar produto (por index)
+function deleteProduct(index) {
+    const nome = Product[index].nome;
     Product.splice(index, 1);
     alert(`Produto ${nome} deletado com sucesso.`);
     seeProducts(); // Atualiza a lista de produtos após deletar
-}
-
-// Função para processar compra
-function purchaseProduct() {
-    const nome = document.getElementById('purchaseNome').value.trim();
-    const quantidadeDesejada = Number(document.getElementById('purchaseQuantidade').value);
-
-    if (!nome || isNaN(quantidadeDesejada) || quantidadeDesejada <= 0) {
-        alert('Por favor, insira valores válidos.');
-        return;
-    }
-
-    const produto = Product.find(item => item.nome.toLowerCase() === nome.toLowerCase());
-
-    if (!produto) {
-        alert(`O produto ${nome} não foi encontrado.`);
-        return;
-    }
-
-    if (produto.quantidade < quantidadeDesejada) {
-        alert(`Quantidade indisponível. Apenas ${produto.quantidade} unidades estão em estoque.`);
-        return;
-    }
-
-    produto.quantidade -= quantidadeDesejada; // Reduz a quantidade do produto no estoque
-    alert(`Compra de ${quantidadeDesejada} unidades do produto ${nome} realizada com sucesso.`);
-    seeProducts(); // Atualiza a lista de produtos após a compra
 }
 
 // Função para limpar o formulário após adição/atualização/compra
@@ -128,8 +94,46 @@ function clearForm() {
     document.getElementById('nome').value = '';
     document.getElementById('valor').value = '';
     document.getElementById('quantidade').value = '';
-    document.getElementById('purchaseNome').value = '';
-    document.getElementById('purchaseQuantidade').value = '';
+}
+
+// Função para abrir o formulário de adicionar/atualizar produtos
+function openAddProductForm() {
+    document.getElementById('productForm').style.display = 'block';
+}
+
+// Função para fechar o formulário de adicionar/atualizar produtos
+function closeForm() {
+    document.getElementById('productForm').style.display = 'none';
+    clearForm();
+}
+
+// Função para pesquisar produtos
+function searchProduct() {
+    const searchValue = document.getElementById('search').value.toLowerCase();
+    const filteredProducts = Product.filter(produto => 
+        produto.nome.toLowerCase().includes(searchValue) || 
+        produto.codigoBarras.includes(searchValue)
+    );
+    
+    const productListDiv = document.getElementById('productList');
+    productListDiv.innerHTML = ''; // Limpa a lista anterior
+
+    filteredProducts.forEach((produto, index) => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${produto.nome}</td>
+            <td>R$ ${produto.valor.toFixed(2)}</td>
+            <td>${produto.quantidade}</td>
+            <td>${produto.codigoBarras}</td>
+            <td>
+                <button class="btn-action edit" onclick="editProduct(${index})"><i class="fas fa-edit"></i></button>
+                <button class="btn-action delete" onclick="deleteProduct(${index})"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        `;
+
+        productListDiv.appendChild(row);
+    });
 }
 
 // Carrega os produtos automaticamente ao carregar a página
