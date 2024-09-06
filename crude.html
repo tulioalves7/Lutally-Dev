@@ -8,13 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div class="top-bar">
+        <span class="logo">Lutally</span>
+        <span class="settings-icon">⚙️</span>
+        <button id="toggle-theme">🌙</button>
+    </div>
+
     <div class="container">
         <h1>Cadastro de Produto</h1>
         <button class="btn-add" onclick="openAddProductForm()">ADICIONAR</button>
 
         <!-- Campo de pesquisa -->
         <div class="search-container">
-            <label for="search">Pesquisar:</label>
+            <label for="search" class="pesquisa">Pesquisar:</label>
             <input type="text" id="search" placeholder="Buscar produto..." onkeyup="searchProduct()">
         </div>
 
@@ -35,8 +41,8 @@
         </table>
     </div>
 
-    <!-- Formulário para adicionar/atualizar produtos -->
-    <div id="productForm" style="display:none;">
+    <!-- Formulário para adicionar/atualizar produtos joao tetas codigo kapa kapa -->
+    <!-- <div id="productForm" style="display:none;">
         <h2>Adicionar/Atualizar Produto</h2>
         <label for="nome">Nome do Produto:</label>
         <input type="text" id="nome"><br><br>
@@ -49,7 +55,31 @@
 
         <button onclick="addProduct()">Salvar</button>
         <button onclick="closeForm()">Cancelar</button>
+    </div> -->
+
+    <!-- turorial de como quebrar o codigo -->
+    <div id="productPopup" class="popup">
+        <!-- <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Detalhes do Produto</h2>
+            <div id="popupProductDetails"></div>
+        </div> -->
+        <div class="popup-content">
+            <h2>Adicionar/Atualizar Produto</h2>
+            <label for="nome">Nome do Produto:</label>
+            <input type="text" id="nome"><br><br>
+
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor"><br><br>
+
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade"><br><br>
+
+            <button onclick="addProduct()">Salvar</button>
+            <button onclick="closeForm()">Cancelar</button>
+        </div> 
     </div>
+
 
     <!-- Conectando o JavaScript -->
     <script src="./Scripts/crude.js"></script>

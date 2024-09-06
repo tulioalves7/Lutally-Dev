@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../style/dash.css">
+</head>
+<body>
+    <div class="top-bar">
+        <span class="logo">Lutally</span>
+        <span class="settings-icon">⚙️</span>
+        <button id="toggle-theme">🌙</button>
+    </div>
+
+    <div class="dashboard-container">
+        <h1>Olá, <span id="user-name">João</span>!</h1>
+        <div class="options-container">
+            <button class="option-btn" onclick="handleOptionClick('Controle de Produção')">Controle de Produção</button>
+            <button class="option-btn" onclick="handleOptionClick('Controle de Estoque')">Controle de Estoque</button>
+            <button class="option-btn" onclick="handleOptionClick('Dossiê Produtos')">Dossiê Produtos</button>
+            <button class="option-btn" onclick="handleOptionClick('Manutenção Sistema')">Manutenção Sistema</button>
+        </div>
+    </div>
+
+    <script src="./Scripts/scriptdash.js"></script>
+</body>
+</html>

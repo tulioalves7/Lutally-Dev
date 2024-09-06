@@ -98,12 +98,14 @@ function clearForm() {
 
 // Função para abrir o formulário de adicionar/atualizar produtos
 function openAddProductForm() {
-    document.getElementById('productForm').style.display = 'block';
+    // document.getElementById('productForm').style.display = 'block'; AQUI TA FUNCIONANDO
+    document.getElementById('productPopup').style.display = 'block'; 
 }
 
 // Função para fechar o formulário de adicionar/atualizar produtos
 function closeForm() {
-    document.getElementById('productForm').style.display = 'none';
+    // document.getElementById('productForm').style.display = 'none'; AQUI TA FUNCIONANDO
+    document.getElementById('productPopup').style.display = 'none'; 
     clearForm();
 }
 
@@ -136,5 +138,56 @@ function searchProduct() {
     });
 }
 
+// grande chance de dar merda by: tulio
+function showPopup(produto) {
+    const popup = document.getElementById('productPopup');
+    const popupProductDetails = document.getElementById('popupProductDetails');
+    
+    popupProductDetails.innerHTML = `
+        <p><strong>Nome:</strong> ${produto.nome}</p>
+        <p><strong>Valor:</strong> R$ ${produto.valor.toFixed(2)}</p>
+        <p><strong>Quantidade:</strong> ${produto.quantidade}</p>
+        <p><strong>Código de Barras:</strong> ${produto.codigoBarras}</p>
+    `;
+
+    popup.style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('productPopup').style.display = 'none';
+}
+
+function seeProducts() {
+    const productListDiv = document.getElementById('productList');
+    productListDiv.innerHTML = ''; 
+
+    Product.forEach((produto, index) => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${produto.nome}</td>
+            <td>R$ ${produto.valor.toFixed(2)}</td>
+            <td>${produto.quantidade}</td>
+            <td>${produto.codigoBarras}</td>
+            <td>
+                <button class="btn-action view" onclick="showPopup(${JSON.stringify(produto)})"><i class="fas fa-eye"></i></button>
+                <button class="btn-action edit" onclick="editProduct(${index})"><i class="fas fa-edit"></i></button>
+                <button class="btn-action delete" onclick="deleteProduct(${index})"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        `;
+
+        productListDiv.appendChild(row);
+    });
+}
+// penis
+
 // Carrega os produtos automaticamente ao carregar a página
 document.addEventListener('DOMContentLoaded', seeProducts);
+
+
+document.getElementById('toggle-theme').addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+    
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    this.textContent = isDarkMode ? '☀️' : '🌙';
+});

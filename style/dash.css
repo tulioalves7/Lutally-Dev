@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap');
+
+@font-face {
+    font-family: SFPRODISPLAYBOLD;
+    src: url('../SFPRODISPLAYBOLD.OTF') format(opentype);
+    font-weight: normal;
+    font-style: normal;
+}
+/* Modo Claro */
+:root {
+    --bg-color: #f0f2f5;
+    --text-color: #333;
+    --button-bg-color: #8A24D4;
+    --button-hover-bg-color: #8A24D4;
+    --dashboard-bg-color: white;
+    --top-bar-bg-color: #8A24D4;
+    --fonte-padrao: 'SFPRODISPLAYBOLD', Arial; 
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Remove o scroll */
+}
+
+body {
+    font-family: var(--fonte-padrao), sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.top-bar {
+    width: 100%;
+    background-color: var(--top-bar-bg-color);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#toggle-theme {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.settings-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+button {
+    font-family: var(--fonte-padrao);
+}
+
+.dashboard-container {
+    text-align: center;
+    background-color: var(--dashboard-bg-color);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin-top: 80px;
+}
+
+h1 {
+    font-size: 24px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+#user-name {
+    color: var(--button-bg-color);
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option-btn {
+    background-color: var(--button-bg-color);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.option-btn:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+.option-btn:focus {
+    outline: none;
+}
+
+/* Modo Noturno */
+body.dark-mode {
+    --bg-color: #1e1e1e;
+    --text-color: #f0f0f0;
+    --button-bg-color: #bb86fc;
+    --button-hover-bg-color: #9a68df;
+    --dashboard-bg-color: #333;
+    --top-bar-bg-color: #8A24D4;
+    --fonte-padrao: 'SFPRODISPLAYBOLD', Arial; 
+}

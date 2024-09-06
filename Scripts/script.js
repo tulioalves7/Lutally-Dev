@@ -7,6 +7,13 @@ function visibilidadeSenha() {
     }
 }
 
+window.onload = function() {
+    const form = document.querySelector('.form');
+    setTimeout(() => {
+      form.classList.add('visible');
+    }, 100); 
+  };
+
 // document.addEventListener('mousemove', function(e) {
 //     let body = document.querySelector('body');
 //     let xPos = e.clientX / window.innerWidth;
