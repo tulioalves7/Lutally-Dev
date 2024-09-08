@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Técnica</title>
+    <link rel="stylesheet" href="./style/dossie.css">
+</head>
+<body>
+    <h1>Ficha Técnica dos Produtos</h1>
+
+    <form id="fichaForm" onsubmit="event.preventDefault(); addFichaTecnica();">
+        <label for="nomeProduto">Nome do Produto:</label>
+        <input type="text" id="nomeProduto" required>
+
+        <label for="nomeMaterial">Nome do Material:</label>
+        <input type="text" id="nomeMaterial" required>
+
+        <label for="precoCompra">Preço de Compra:</label>
+        <input type="number" id="precoCompra" step="0.01" required>
+
+        <label for="precoVenda">Preço de Venda:</label>
+        <input type="number" id="precoVenda" step="0.01" required>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" required>
+
+        <label for="metrosPorSapato">Metros por Sapato:</label>
+        <input type="number" id="metrosPorSapato" step="0.01" required>
+
+        <label for="cor">Cor:</label>
+        <input type="text" id="cor" required>
+
+        <button type="submit">Adicionar Ficha Técnica</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do Produto</th>
+                <th>Nome do Material</th>
+                <th>Preço de Compra</th>
+                <th>Preço de Venda</th>
+                <th>Quantidade</th>
+                <th>Metros por Sapato</th>
+                <th>Cor</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="listaFichas">
+            <!-- As fichas técnicas serão exibidas aqui -->
+        </tbody>
+    </table>
+
+    
+    <!-- Container para o pop-up -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span id="close-popup" class="close">&times;</span>
+        <h2>Detalhes da Ficha Técnica</h2>
+        <p><strong>Nome do Produto:</strong> <span id="popup-nomeProduto"></span></p>
+        <p><strong>Nome do Material:</strong> <span id="popup-nomeMaterial"></span></p>
+        <p><strong>Preço de Compra:</strong> R$ <span id="popup-precoCompra"></span></p>
+        <p><strong>Preço de Venda:</strong> R$ <span id="popup-precoVenda"></span></p>
+        <p><strong>Quantidade:</strong> <span id="popup-quantidade"></span></p>
+        <p><strong>Metros por Sapato:</strong> <span id="popup-metrosPorSapato"></span></p>
+        <p><strong>Cor:</strong> <span id="popup-cor"></span></p>
+    </div>
+</div>
+
+
+    <script src="./Scripts/scriptdash.js"></script>
+    <script src="./Scripts/dossie.js"></script>
+</body>
+</html>
